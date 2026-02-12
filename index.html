@@ -3,26 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BDG Tecnologia e Manutencao | Engenharia Aeroportuaria</title>
+    <title>BDG Tecnologia e Manutenção | Engenharia Aeroportuária</title>
     <meta
       name="description"
-      content="Engenharia de precisao para infraestrutura aeroportuaria. Manutencao de auxilios visuais com equipe ITA e tecnicos especialistas."
+      content="Engenharia de precisão para infraestrutura aeroportuária. Manutenção de auxílios visuais com engenheiro responsável e técnicos especialistas no Aeroporto de Belém (SBBE)."
     />
     <link
       rel="icon"
       type="image/svg+xml"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230a0e17'/><text x='50' y='65' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='36' fill='%23f59e0b'>BDG</text></svg>"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e293b'/><text x='50' y='65' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='36' fill='%23f59e0b'>BDG</text></svg>"
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwindcss.config = {
         theme: {
           extend: {
-            colors: {
-              void: { 950: "#0a0e17", 900: "#0f1420", 800: "#151c2c", 700: "#1e2740" },
-              amber: { 400: "#fbbf24", 500: "#f59e0b", 600: "#d97706" },
-              slate: { 300: "#cbd5e1", 400: "#94a3b8", 500: "#64748b", 600: "#475569" },
-            },
             fontFamily: {
               display: ["Outfit", "sans-serif"],
               body: ["DM Sans", "sans-serif"],
@@ -43,57 +38,11 @@
         scroll-behavior: smooth;
       }
 
-      /* Grain overlay */
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 9999;
-        opacity: 0.03;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      }
-
-      /* Runway lights animation */
-      @keyframes runway-pulse {
-        0%,
-        100% {
-          opacity: 0.15;
-        }
-        50% {
-          opacity: 0.4;
-        }
-      }
-      .runway-light {
-        animation: runway-pulse 3s ease-in-out infinite;
-      }
-      .runway-light:nth-child(2) {
-        animation-delay: 0.3s;
-      }
-      .runway-light:nth-child(3) {
-        animation-delay: 0.6s;
-      }
-      .runway-light:nth-child(4) {
-        animation-delay: 0.9s;
-      }
-      .runway-light:nth-child(5) {
-        animation-delay: 1.2s;
-      }
-      .runway-light:nth-child(6) {
-        animation-delay: 1.5s;
-      }
-      .runway-light:nth-child(7) {
-        animation-delay: 1.8s;
-      }
-      .runway-light:nth-child(8) {
-        animation-delay: 2.1s;
-      }
-
       /* Scroll reveal */
       @keyframes reveal-up {
         from {
           opacity: 0;
-          transform: translateY(32px);
+          transform: translateY(24px);
         }
         to {
           opacity: 1;
@@ -101,128 +50,113 @@
         }
       }
       .reveal {
-        animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-hero {
+        animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
       }
       .reveal-d1 {
-        animation-delay: 0.1s;
+        animation-delay: 0.08s;
       }
       .reveal-d2 {
-        animation-delay: 0.2s;
+        animation-delay: 0.16s;
       }
       .reveal-d3 {
-        animation-delay: 0.3s;
+        animation-delay: 0.24s;
       }
       .reveal-d4 {
-        animation-delay: 0.4s;
-      }
-      .reveal-d5 {
-        animation-delay: 0.5s;
-      }
-      .reveal-d6 {
-        animation-delay: 0.6s;
+        animation-delay: 0.32s;
       }
 
-      /* Glow effect */
-      .glow-amber {
-        box-shadow:
-          0 0 60px rgba(245, 158, 11, 0.15),
-          0 0 120px rgba(245, 158, 11, 0.05);
+      /* Stagger children */
+      .reveal.visible .stagger {
+        opacity: 0;
+        animation: reveal-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .reveal.visible .stagger:nth-child(1) {
+        animation-delay: 0.04s;
+      }
+      .reveal.visible .stagger:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+      .reveal.visible .stagger:nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      .reveal.visible .stagger:nth-child(4) {
+        animation-delay: 0.16s;
+      }
+      .reveal.visible .stagger:nth-child(5) {
+        animation-delay: 0.2s;
+      }
+      .reveal.visible .stagger:nth-child(6) {
+        animation-delay: 0.24s;
       }
 
-      /* Grid background */
-      .grid-bg {
-        background-image:
-          linear-gradient(rgba(251, 191, 36, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(251, 191, 36, 0.03) 1px, transparent 1px);
-        background-size: 64px 64px;
-      }
-
-      /* Technical line */
-      .tech-line {
-        background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.3), transparent);
-        height: 1px;
-      }
-
-      /* Card hover lift */
+      /* Card hover */
       .card-lift {
         transition:
-          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-          box-shadow 0.4s ease;
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.3s ease;
       }
       .card-lift:hover {
-        transform: translateY(-4px);
+        transform: translateY(-3px);
         box-shadow:
-          0 20px 60px rgba(0, 0, 0, 0.4),
-          0 0 40px rgba(245, 158, 11, 0.08);
-      }
-
-      /* Scrollbar */
-      ::-webkit-scrollbar {
-        width: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #0a0e17;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1e2740;
-        border-radius: 3px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #f59e0b;
+          0 12px 40px rgba(0, 0, 0, 0.08),
+          0 4px 12px rgba(0, 0, 0, 0.04);
       }
     </style>
   </head>
-  <body class="bg-void-950 text-slate-300 font-body">
-    <!-- Header -->
-    <header class="fixed top-0 w-full bg-void-950/80 backdrop-blur-xl border-b border-white/5 z-50">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8 h-18 flex items-center justify-between" style="height: 72px">
-        <a href="#" class="flex items-center gap-3 group">
-          <div class="relative">
-            <div
-              class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-105"
-            >
-              <span class="text-void-950 font-display font-bold text-sm tracking-tight">BDG</span>
-            </div>
-            <div
-              class="absolute -inset-1 bg-amber-500/20 rounded-xl blur-sm -z-10 opacity-0 group-hover:opacity-100 transition-opacity"
-            ></div>
-          </div>
-          <div class="leading-tight hidden sm:block">
-            <span class="font-display font-semibold text-white text-sm tracking-wide">BDG Tecnologia</span>
-            <span class="block text-[10px] text-slate-500 font-mono tracking-widest uppercase">& Manutencao</span>
-          </div>
+  <body class="bg-white text-slate-600 font-body">
+    <!-- ========== HEADER ========== -->
+    <header class="fixed top-0 w-full bg-white/90 backdrop-blur-lg border-b border-slate-200 z-50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between" style="height: 68px">
+        <a href="#" class="flex items-center">
+          <img src="logo.png" alt="BDG Tecnologia e Manutenção" class="h-8" />
         </a>
         <nav class="hidden md:flex items-center gap-1">
           <a
             href="#sobre"
-            class="px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors font-medium rounded-lg hover:bg-white/5"
+            class="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors font-medium rounded-lg hover:bg-slate-50"
             >Sobre</a
           >
           <a
             href="#servicos"
-            class="px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors font-medium rounded-lg hover:bg-white/5"
-            >Servicos</a
+            class="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors font-medium rounded-lg hover:bg-slate-50"
+            >Serviços</a
           >
           <a
-            href="#diferenciais"
-            class="px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors font-medium rounded-lg hover:bg-white/5"
-            >Diferenciais</a
+            href="#equipe"
+            class="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors font-medium rounded-lg hover:bg-slate-50"
+            >Equipe</a
+          >
+          <a
+            href="#metodologia"
+            class="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors font-medium rounded-lg hover:bg-slate-50"
+            >Metodologia</a
           >
           <a
             href="#equipamentos"
-            class="px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors font-medium rounded-lg hover:bg-white/5"
+            class="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors font-medium rounded-lg hover:bg-slate-50"
             >Equipamentos</a
           >
-          <div class="w-px h-5 bg-white/10 mx-2"></div>
+          <div class="w-px h-5 bg-slate-200 mx-2"></div>
           <a
             href="#contato"
-            class="px-5 py-2 text-sm font-semibold text-void-950 bg-amber-500 rounded-lg hover:bg-amber-400 transition-all hover:shadow-lg hover:shadow-amber-500/20"
+            class="px-5 py-2 text-sm font-semibold text-white bg-slate-900 rounded-lg hover:bg-slate-800 transition-colors"
             >Contato</a
           >
         </nav>
         <button
           id="menu-btn"
-          class="md:hidden p-2 text-slate-400 hover:text-white"
+          class="md:hidden p-2 text-slate-500 hover:text-slate-900"
           onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
         >
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,35 +164,41 @@
           </svg>
         </button>
       </div>
-      <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-void-950/95 backdrop-blur-xl px-6 py-5">
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-6 py-5">
         <nav class="flex flex-col gap-1">
           <a
             href="#sobre"
-            class="py-3 px-4 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg"
+            class="py-3 px-4 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg"
             onclick="document.getElementById('mobile-menu').classList.add('hidden')"
             >Sobre</a
           >
           <a
             href="#servicos"
-            class="py-3 px-4 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg"
+            class="py-3 px-4 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg"
             onclick="document.getElementById('mobile-menu').classList.add('hidden')"
-            >Servicos</a
+            >Serviços</a
           >
           <a
-            href="#diferenciais"
-            class="py-3 px-4 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg"
+            href="#equipe"
+            class="py-3 px-4 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg"
             onclick="document.getElementById('mobile-menu').classList.add('hidden')"
-            >Diferenciais</a
+            >Equipe</a
+          >
+          <a
+            href="#metodologia"
+            class="py-3 px-4 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg"
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')"
+            >Metodologia</a
           >
           <a
             href="#equipamentos"
-            class="py-3 px-4 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg"
+            class="py-3 px-4 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg"
             onclick="document.getElementById('mobile-menu').classList.add('hidden')"
             >Equipamentos</a
           >
           <a
             href="#contato"
-            class="mt-2 py-3 px-4 text-sm font-semibold text-void-950 bg-amber-500 rounded-lg text-center"
+            class="mt-2 py-3 px-4 text-sm font-semibold text-white bg-slate-900 rounded-lg text-center"
             onclick="document.getElementById('mobile-menu').classList.add('hidden')"
             >Contato</a
           >
@@ -266,57 +206,41 @@
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="relative min-h-screen flex items-center overflow-hidden">
-      <!-- Ambient background -->
-      <div class="absolute inset-0">
-        <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-[128px]"></div>
-        <div class="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-blue-500/3 rounded-full blur-[100px]"></div>
-      </div>
-      <!-- Grid overlay -->
-      <div class="absolute inset-0 grid-bg"></div>
-      <!-- Runway lights decoration -->
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 pb-8 opacity-60">
-        <div class="runway-light w-1 h-8 bg-amber-500/30 rounded-full"></div>
-        <div class="runway-light w-1 h-8 bg-amber-500/30 rounded-full"></div>
-        <div class="runway-light w-1 h-8 bg-amber-500/30 rounded-full"></div>
-        <div class="runway-light w-1 h-8 bg-amber-500/30 rounded-full"></div>
-        <div class="runway-light w-1 h-6 bg-amber-500/30 rounded-full"></div>
-      </div>
-
+    <!-- ========== HERO ========== -->
+    <section class="relative min-h-screen flex items-center bg-slate-50">
       <div class="max-w-7xl mx-auto px-6 lg:px-8 relative pt-32 pb-24">
         <div class="max-w-4xl">
           <!-- Badge -->
-          <div class="reveal inline-flex items-center gap-3 mb-8">
-            <div class="flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-1.5">
+          <div class="reveal-hero inline-flex items-center gap-3 mb-8">
+            <div class="flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-1.5">
               <div class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse"></div>
-              <span class="text-xs font-mono font-medium text-amber-400 tracking-wider uppercase"
-                >Seguranca Aeroportuaria</span
+              <span class="text-xs font-mono font-medium text-amber-700 tracking-wider uppercase"
+                >Segurança Aeroportuária</span
               >
             </div>
           </div>
 
           <!-- Headline -->
           <h1
-            class="reveal reveal-d1 font-display font-800 text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] tracking-tight mb-8"
+            class="reveal-hero reveal-d1 font-display text-5xl md:text-6xl lg:text-7xl text-slate-900 leading-[1.05] tracking-tight mb-8"
             style="font-weight: 800"
           >
             Engenharia de<br />
-            precisao para<br />
-            <span class="text-amber-400">auxilios visuais</span>
+            precisão para<br />
+            <span class="text-amber-600">auxílios visuais</span>
           </h1>
 
           <!-- Subhead -->
-          <p class="reveal reveal-d2 text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed mb-12">
-            Lideranca tecnica ITA e profissionais com decadas de experiencia no sitio aeroportuario de Belem &mdash;
-            SBBE.
+          <p class="reveal-hero reveal-d2 text-lg md:text-xl text-slate-500 max-w-xl leading-relaxed mb-12">
+            Engenheiro eletricista responsável e técnicos com décadas de experiência direta no sítio aeroportuário de
+            Belém (SBBE).
           </p>
 
           <!-- CTAs -->
-          <div class="reveal reveal-d3 flex flex-col sm:flex-row gap-4">
+          <div class="reveal-hero reveal-d3 flex flex-col sm:flex-row gap-4">
             <a
               href="#contato"
-              class="group inline-flex items-center justify-center gap-3 bg-amber-500 text-void-950 font-display font-semibold px-8 py-4 rounded-xl hover:bg-amber-400 transition-all hover:shadow-xl hover:shadow-amber-500/20"
+              class="group inline-flex items-center justify-center gap-3 bg-slate-900 text-white font-display font-semibold px-8 py-4 rounded-xl hover:bg-slate-800 transition-colors"
             >
               Solicitar proposta
               <svg
@@ -330,30 +254,32 @@
             </a>
             <a
               href="#servicos"
-              class="inline-flex items-center justify-center gap-2 border border-white/10 text-slate-300 font-display font-medium px-8 py-4 rounded-xl hover:bg-white/5 hover:border-white/20 transition-all"
+              class="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-700 font-display font-medium px-8 py-4 rounded-xl hover:bg-white hover:border-slate-400 transition-all"
             >
-              Conhecer servicos
+              Conhecer serviços
             </a>
           </div>
 
           <!-- Stats row -->
-          <div class="reveal reveal-d4 mt-20 pt-10 border-t border-white/5">
+          <div class="reveal-hero reveal-d4 mt-20 pt-10 border-t border-slate-200">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               <div>
-                <div class="font-display font-bold text-3xl text-white">ITA</div>
-                <div class="text-sm text-slate-500 mt-1 font-mono">Lideranca tecnica</div>
+                <div class="font-display font-bold text-3xl text-slate-900">04</div>
+                <div class="text-sm text-slate-400 mt-1 font-mono">Profissionais dedicados</div>
               </div>
               <div>
-                <div class="font-display font-bold text-3xl text-white">20<span class="text-amber-500">+</span></div>
-                <div class="text-sm text-slate-500 mt-1 font-mono">Anos experiencia</div>
+                <div class="font-display font-bold text-3xl text-slate-900">
+                  20<span class="text-amber-600">+</span>
+                </div>
+                <div class="text-sm text-slate-400 mt-1 font-mono">Anos de experiência</div>
               </div>
               <div>
-                <div class="font-display font-bold text-3xl text-white">RCM</div>
-                <div class="text-sm text-slate-500 mt-1 font-mono">Confiabilidade</div>
+                <div class="font-display font-bold text-3xl text-slate-900">RCM</div>
+                <div class="text-sm text-slate-400 mt-1 font-mono">Confiabilidade</div>
               </div>
               <div>
-                <div class="font-display font-bold text-3xl text-white">SBBE</div>
-                <div class="text-sm text-slate-500 mt-1 font-mono">Aeroporto Belem</div>
+                <div class="font-display font-bold text-3xl text-slate-900">SBBE</div>
+                <div class="text-sm text-slate-400 mt-1 font-mono">Aeroporto de Belém</div>
               </div>
             </div>
           </div>
@@ -361,55 +287,54 @@
       </div>
     </section>
 
-    <!-- Divider -->
-    <div class="tech-line"></div>
-
-    <!-- Sobre -->
-    <section id="sobre" class="py-24 md:py-32 relative">
+    <!-- ========== SOBRE ========== -->
+    <section id="sobre" class="py-24 md:py-32 bg-white">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="grid lg:grid-cols-5 gap-16 lg:gap-20">
           <!-- Text column -->
-          <div class="lg:col-span-3">
-            <span class="font-mono text-xs text-amber-500 tracking-widest uppercase">01 &mdash; Sobre nos</span>
-            <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white mt-4 mb-8 leading-tight">
-              Tecnologia e rigor academico a servico da
-              <span class="text-amber-400">aviacao</span>
+          <div class="lg:col-span-3 reveal">
+            <span class="font-mono text-xs text-amber-600 tracking-widest uppercase">01 · Sobre nós</span>
+            <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-slate-900 mt-4 mb-8 leading-tight">
+              Tecnologia e rigor técnico a serviço da
+              <span class="text-amber-600">aviação</span>
             </h2>
-            <div class="space-y-5 text-slate-400 leading-relaxed">
+            <div class="space-y-5 text-slate-500 leading-relaxed">
               <p>
-                A BDG Tecnologia e Manutencao LTDA, sediada em Sao Jose dos Campos &mdash; SP e atuante em Belem &mdash;
-                PA, e especializada em engenharia de alta complexidade e manutencao de ativos criticos.
+                A <span class="text-slate-900 font-medium">BDG Tecnologia e Manutenção LTDA</span>, sediada em São José
+                dos Campos (SP) e atuante em Belém (PA), é especializada em engenharia de alta complexidade e na
+                manutenção de ativos críticos de infraestrutura aeroportuária.
               </p>
               <p>
-                Com raizes no polo tecnologico aeronautico brasileiro, a empresa aplica rigor academico e metodologias
-                avancadas de analise de dados para reduzir custos operacionais e aumentar a seguranca de voo.
+                Sediada no polo tecnológico aeronáutico de São José dos Campos, a empresa aplica metodologias avançadas
+                de análise de dados para reduzir custos operacionais e aumentar a segurança de voo.
               </p>
               <p>
-                Nossa equipe une o que ha de mais moderno na engenharia brasileira &mdash; com lideranca tecnica oriunda
-                do <span class="text-white font-medium">Instituto Tecnologico de Aeronautica (ITA)</span> &mdash; a
-                experiencia pratica de tecnicos que dominam a infraestrutura aeroportuaria ha decadas.
+                Nossa equipe é liderada por um
+                <span class="text-slate-900 font-medium">engenheiro eletricista responsável</span> e conta com técnicos
+                que dominam a infraestrutura de auxílios visuais há décadas, vários deles com atuação prévia direta no
+                sítio aeroportuário de Belém.
               </p>
             </div>
           </div>
 
-          <!-- Team card column -->
-          <div class="lg:col-span-2">
-            <div class="bg-void-800 border border-white/5 rounded-2xl overflow-hidden glow-amber">
+          <!-- Credentials card column -->
+          <div class="lg:col-span-2 reveal">
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden">
               <!-- Card header -->
-              <div class="px-7 pt-7 pb-5 border-b border-white/5">
+              <div class="px-7 pt-7 pb-5 border-b border-slate-200">
                 <div class="flex items-center gap-2 mb-1">
                   <div class="w-2 h-2 bg-amber-500 rounded-full"></div>
-                  <span class="font-mono text-xs text-slate-500 tracking-wider uppercase">Equipe tecnica</span>
+                  <span class="font-mono text-xs text-slate-400 tracking-wider uppercase">Credenciais</span>
                 </div>
               </div>
 
-              <!-- Team members -->
-              <div class="p-7 space-y-6">
+              <!-- Credentials -->
+              <div class="p-7 space-y-5">
                 <div class="flex gap-4">
                   <div
-                    class="flex-shrink-0 w-11 h-11 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center"
+                    class="flex-shrink-0 w-11 h-11 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center"
                   >
-                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -425,60 +350,90 @@
                     </svg>
                   </div>
                   <div>
-                    <div class="font-display font-semibold text-white text-sm">Engenheiro de Computacao</div>
-                    <div class="font-mono text-xs text-amber-500/80 mt-0.5">ITA &mdash; Graduado &amp; Medalhista</div>
-                    <div class="text-xs text-slate-500 mt-2 leading-relaxed">
-                      Gestao estrategica, otimizacao de planos de manutencao e analise preditiva.
+                    <div class="font-display font-semibold text-slate-900 text-sm">Engenheiro Responsável</div>
+                    <div class="text-xs text-slate-400 mt-1 leading-relaxed">
+                      Engenheiro eletricista com registro no CREA e responsabilidade técnica sobre todos os serviços
+                      executados.
                     </div>
                   </div>
                 </div>
 
-                <div class="h-px bg-white/5"></div>
+                <div class="h-px bg-slate-200"></div>
 
                 <div class="flex gap-4">
                   <div
-                    class="flex-shrink-0 w-11 h-11 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center"
+                    class="flex-shrink-0 w-11 h-11 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center"
                   >
-                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="1.5"
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                       />
                     </svg>
                   </div>
                   <div>
-                    <div class="font-display font-semibold text-white text-sm">02 Eletrotecnicos</div>
-                    <div class="font-mono text-xs text-amber-500/80 mt-0.5">CHT Ativa &mdash; Especialistas SBBE</div>
-                    <div class="text-xs text-slate-500 mt-2 leading-relaxed">
-                      Decadas de atuacao comprovada com experiencia direta no sitio aeroportuario de Belem.
+                    <div class="font-display font-semibold text-slate-900 text-sm">CHT Ativa</div>
+                    <div class="text-xs text-slate-400 mt-1 leading-relaxed">
+                      Técnicos habilitados com Carteira de Habilitação Técnica ativa e experiência direta no SBBE.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="h-px bg-slate-200"></div>
+
+                <div class="flex gap-4">
+                  <div
+                    class="flex-shrink-0 w-11 h-11 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center"
+                  >
+                    <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="font-display font-semibold text-slate-900 text-sm">Manutenção RCM</div>
+                    <div class="text-xs text-slate-400 mt-1 leading-relaxed">
+                      Manutenção Baseada na Confiabilidade: gestão de ativos fundamentada em dados e análise preditiva.
                     </div>
                   </div>
                 </div>
               </div>
 
               <!-- Card footer - norms -->
-              <div class="px-7 py-5 bg-void-900 border-t border-white/5">
-                <div class="font-mono text-[10px] text-slate-600 tracking-wider uppercase mb-3">
-                  Normas de referencia
+              <div class="px-7 py-5 bg-slate-100 border-t border-slate-200">
+                <div class="font-mono text-[10px] text-slate-400 tracking-wider uppercase mb-3">
+                  Normas de referência
                 </div>
                 <div class="flex flex-wrap gap-1.5">
                   <span
-                    class="font-mono text-[10px] bg-white/5 text-slate-400 px-2.5 py-1 rounded-md border border-white/5"
+                    class="font-mono text-[10px] bg-white text-slate-500 px-2.5 py-1 rounded-md border border-slate-200"
                     >NBR 5410</span
                   >
                   <span
-                    class="font-mono text-[10px] bg-white/5 text-slate-400 px-2.5 py-1 rounded-md border border-white/5"
+                    class="font-mono text-[10px] bg-white text-slate-500 px-2.5 py-1 rounded-md border border-slate-200"
                     >NBR 5419</span
                   >
                   <span
-                    class="font-mono text-[10px] bg-white/5 text-slate-400 px-2.5 py-1 rounded-md border border-white/5"
+                    class="font-mono text-[10px] bg-white text-slate-500 px-2.5 py-1 rounded-md border border-slate-200"
                     >ABNT 8919</span
                   >
                   <span
-                    class="font-mono text-[10px] bg-white/5 text-slate-400 px-2.5 py-1 rounded-md border border-white/5"
+                    class="font-mono text-[10px] bg-white text-slate-500 px-2.5 py-1 rounded-md border border-slate-200"
                     >ITM</span
+                  >
+                  <span
+                    class="font-mono text-[10px] bg-white text-slate-500 px-2.5 py-1 rounded-md border border-slate-200"
+                    >RBAC 154</span
+                  >
+                  <span
+                    class="font-mono text-[10px] bg-white text-slate-500 px-2.5 py-1 rounded-md border border-slate-200"
+                    >ICAO Annex 14</span
                   >
                 </div>
               </div>
@@ -488,30 +443,28 @@
       </div>
     </section>
 
-    <!-- Divider -->
-    <div class="tech-line"></div>
-
-    <!-- Servicos -->
-    <section id="servicos" class="py-24 md:py-32 relative grid-bg">
+    <!-- ========== SERVIÇOS ========== -->
+    <section id="servicos" class="py-24 md:py-32 bg-slate-50">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="max-w-2xl mb-16">
-          <span class="font-mono text-xs text-amber-500 tracking-widest uppercase">02 &mdash; Servicos</span>
-          <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white mt-4 mb-5 leading-tight">
-            Manutencao integral de auxilios visuais
+        <div class="max-w-2xl mb-16 reveal">
+          <span class="font-mono text-xs text-amber-600 tracking-widest uppercase">02 · Serviços</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-slate-900 mt-4 mb-5 leading-tight">
+            Manutenção integral de<br />auxílios visuais
           </h2>
-          <p class="text-slate-400 leading-relaxed">
-            Cobertura completa de todos os ativos do lado ar do Aeroporto Internacional de Belem &mdash; Val de Cans.
+          <p class="text-slate-500 leading-relaxed">
+            Cobertura completa de todos os ativos do lado ar e do lado terra do Aeroporto Internacional de Belém, Val de
+            Cans.
           </p>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 reveal">
           <!-- RCC -->
-          <div class="card-lift bg-void-800/80 backdrop-blur-sm border border-white/5 rounded-2xl p-7 group">
+          <div class="card-lift bg-white border border-slate-200 rounded-2xl p-7 group stagger">
             <div class="flex items-center gap-3 mb-5">
               <div
-                class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-colors"
+                class="w-10 h-10 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center group-hover:bg-amber-100 transition-colors"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -520,21 +473,21 @@
                   />
                 </svg>
               </div>
-              <span class="font-mono text-[10px] text-slate-600 tracking-wider">RCC</span>
+              <span class="font-mono text-[10px] text-slate-400 tracking-wider">RCC</span>
             </div>
-            <h3 class="font-display font-semibold text-white mb-3">Reguladores de Corrente Constante</h3>
+            <h3 class="font-display font-semibold text-slate-900 mb-3">Reguladores de Corrente Constante</h3>
             <p class="text-sm text-slate-500 leading-relaxed">
               Circuitos 1 a 6 das Runways 07-25 e 03-21. Taxiways Alfa, Bravo, Delta e Charlie.
             </p>
           </div>
 
           <!-- PAPI -->
-          <div class="card-lift bg-void-800/80 backdrop-blur-sm border border-white/5 rounded-2xl p-7 group">
+          <div class="card-lift bg-white border border-slate-200 rounded-2xl p-7 group stagger">
             <div class="flex items-center gap-3 mb-5">
               <div
-                class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-colors"
+                class="w-10 h-10 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center group-hover:bg-amber-100 transition-colors"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -549,21 +502,21 @@
                   />
                 </svg>
               </div>
-              <span class="font-mono text-[10px] text-slate-600 tracking-wider">PAPI</span>
+              <span class="font-mono text-[10px] text-slate-400 tracking-wider">PAPI</span>
             </div>
-            <h3 class="font-display font-semibold text-white mb-3">Sistemas PAPI</h3>
+            <h3 class="font-display font-semibold text-slate-900 mb-3">Sistemas PAPI</h3>
             <p class="text-sm text-slate-500 leading-relaxed">
-              Indicadores de Trajetoria de Aproximacao de Precisao das cabeceiras 03, 07, 21 e 25.
+              Indicadores de Trajetória de Aproximação de Precisão das cabeceiras 03, 07, 21 e 25.
             </p>
           </div>
 
           <!-- ALS -->
-          <div class="card-lift bg-void-800/80 backdrop-blur-sm border border-white/5 rounded-2xl p-7 group">
+          <div class="card-lift bg-white border border-slate-200 rounded-2xl p-7 group stagger">
             <div class="flex items-center gap-3 mb-5">
               <div
-                class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-colors"
+                class="w-10 h-10 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center group-hover:bg-amber-100 transition-colors"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -572,21 +525,21 @@
                   />
                 </svg>
               </div>
-              <span class="font-mono text-[10px] text-slate-600 tracking-wider">ALS</span>
+              <span class="font-mono text-[10px] text-slate-400 tracking-wider">ALS</span>
             </div>
-            <h3 class="font-display font-semibold text-white mb-3">Luzes de Aproximacao</h3>
+            <h3 class="font-display font-semibold text-slate-900 mb-3">Luzes de Aproximação</h3>
             <p class="text-sm text-slate-500 leading-relaxed">
-              Sistema de Luzes de Aproximacao, garantindo orientacao segura durante pousos.
+              Sistema de Luzes de Aproximação, luminárias de guia, barras transversais e flashers.
             </p>
           </div>
 
           <!-- Taxiways -->
-          <div class="card-lift bg-void-800/80 backdrop-blur-sm border border-white/5 rounded-2xl p-7 group">
+          <div class="card-lift bg-white border border-slate-200 rounded-2xl p-7 group stagger">
             <div class="flex items-center gap-3 mb-5">
               <div
-                class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-colors"
+                class="w-10 h-10 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center group-hover:bg-amber-100 transition-colors"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -595,21 +548,21 @@
                   />
                 </svg>
               </div>
-              <span class="font-mono text-[10px] text-slate-600 tracking-wider">TWY</span>
+              <span class="font-mono text-[10px] text-slate-400 tracking-wider">TWY</span>
             </div>
-            <h3 class="font-display font-semibold text-white mb-3">Sinalizacao de Taxiways</h3>
+            <h3 class="font-display font-semibold text-slate-900 mb-3">Sinalização de Taxiways</h3>
             <p class="text-sm text-slate-500 leading-relaxed">
-              Farol rotativo, birutas iluminadas e sinalizacao vertical das taxiways M, N e H.
+              Farol rotativo, birutas iluminadas e sinalização vertical completa das taxiways.
             </p>
           </div>
 
-          <!-- Infra Eletrica -->
-          <div class="card-lift bg-void-800/80 backdrop-blur-sm border border-white/5 rounded-2xl p-7 group">
+          <!-- Infra Elétrica -->
+          <div class="card-lift bg-white border border-slate-200 rounded-2xl p-7 group stagger">
             <div class="flex items-center gap-3 mb-5">
               <div
-                class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-colors"
+                class="w-10 h-10 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center group-hover:bg-amber-100 transition-colors"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -618,21 +571,21 @@
                   />
                 </svg>
               </div>
-              <span class="font-mono text-[10px] text-slate-600 tracking-wider">5kV</span>
+              <span class="font-mono text-[10px] text-slate-400 tracking-wider">6kV</span>
             </div>
-            <h3 class="font-display font-semibold text-white mb-3">Infraestrutura Eletrica</h3>
+            <h3 class="font-display font-semibold text-slate-900 mb-3">Infraestrutura Elétrica</h3>
             <p class="text-sm text-slate-500 leading-relaxed">
-              Transformadores isoladores, conectores primarios/secundarios e cabeamento serie 5kV.
+              Transformadores isoladores, conectores primários/secundários e cabeamento série 6&nbsp;kV.
             </p>
           </div>
 
-          <!-- Gestao -->
-          <div class="card-lift bg-void-800/80 backdrop-blur-sm border border-white/5 rounded-2xl p-7 group">
+          <!-- Gestão -->
+          <div class="card-lift bg-white border border-slate-200 rounded-2xl p-7 group stagger">
             <div class="flex items-center gap-3 mb-5">
               <div
-                class="w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center group-hover:bg-amber-500/20 transition-colors"
+                class="w-10 h-10 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center group-hover:bg-amber-100 transition-colors"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -641,96 +594,225 @@
                   />
                 </svg>
               </div>
-              <span class="font-mono text-[10px] text-slate-600 tracking-wider">DATA</span>
+              <span class="font-mono text-[10px] text-slate-400 tracking-wider">DATA</span>
             </div>
-            <h3 class="font-display font-semibold text-white mb-3">Gestao Baseada em Dados</h3>
+            <h3 class="font-display font-semibold text-slate-900 mb-3">Gestão Baseada em Dados</h3>
             <p class="text-sm text-slate-500 leading-relaxed">
-              Analise de tendencia de isolamento dos cabos serie com metodologia RCM.
+              Análise de tendência de isolamento dos cabos série com metodologia RCM e relatórios de confiabilidade.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Divider -->
-    <div class="tech-line"></div>
-
-    <!-- Diferenciais / RCM -->
-    <section id="diferenciais" class="py-24 md:py-32 relative">
+    <!-- ========== EQUIPE ========== -->
+    <section id="equipe" class="py-24 md:py-32 bg-white">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <span class="font-mono text-xs text-amber-500 tracking-widest uppercase">03 &mdash; Metodologia</span>
-        <h2
-          class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white mt-4 mb-16 leading-tight max-w-3xl"
-        >
-          Manutencao Baseada na
-          <span class="text-amber-400">Confiabilidade</span>
-        </h2>
+        <div class="max-w-2xl mb-16 reveal">
+          <span class="font-mono text-xs text-amber-600 tracking-widest uppercase">03 · Equipe</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-slate-900 mt-4 mb-5 leading-tight">
+            Corpo técnico de<br /><span class="text-amber-600">alta qualificação</span>
+          </h2>
+          <p class="text-slate-500 leading-relaxed">
+            O diferencial da BDG reside na combinação de liderança técnica com conhecimento prático comprovado no
+            sítio aeroportuário de Belém.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 reveal">
+          <!-- Engenheiro -->
+          <div class="card-lift bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden group stagger">
+            <div class="h-1.5 bg-gradient-to-r from-amber-500 to-amber-400"></div>
+            <div class="p-7">
+              <div
+                class="w-14 h-14 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-amber-100 transition-colors"
+              >
+                <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 14l9-5-9-5-9 5 9 5z" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                  />
+                </svg>
+              </div>
+              <div class="font-mono text-[10px] text-amber-600 tracking-wider uppercase mb-2">01 profissional</div>
+              <h3 class="font-display font-semibold text-slate-900 text-lg mb-2">Engenheiro Eletricista</h3>
+              <p class="text-sm text-slate-500 leading-relaxed">
+                Especialista em Sistemas de Potência, Análise Preditiva e Gestão de Manutenção. Responsável pela
+                liderança técnica e otimização dos planos.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2 Eletrotécnicos CHT -->
+          <div class="card-lift bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden group stagger">
+            <div class="h-1.5 bg-gradient-to-r from-amber-500 to-amber-400"></div>
+            <div class="p-7">
+              <div
+                class="w-14 h-14 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-amber-100 transition-colors"
+              >
+                <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              </div>
+              <div class="font-mono text-[10px] text-amber-600 tracking-wider uppercase mb-2">02 profissionais</div>
+              <h3 class="font-display font-semibold text-slate-900 text-lg mb-2">Eletrotécnicos CHT</h3>
+              <p class="text-sm text-slate-500 leading-relaxed">
+                CHT Ativa. Décadas de atuação comprovada e experiência direta no SBBE. Domínio total da malha elétrica e
+                dos circuitos RCC.
+              </p>
+            </div>
+          </div>
+
+          <!-- Eletrotécnico Eletrônica -->
+          <div class="card-lift bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden group stagger">
+            <div class="h-1.5 bg-gradient-to-r from-amber-500 to-amber-400"></div>
+            <div class="p-7">
+              <div
+                class="w-14 h-14 bg-amber-50 border border-amber-200 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-amber-100 transition-colors"
+              >
+                <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+              <div class="font-mono text-[10px] text-amber-600 tracking-wider uppercase mb-2">01 profissional</div>
+              <h3 class="font-display font-semibold text-slate-900 text-lg mb-2">Eletrotécnico</h3>
+              <p class="text-sm text-slate-500 leading-relaxed">
+                Especialização em eletrônica e sistemas elétricos de alta e baixa tensão. Suporte em diagnóstico
+                eletrônico de equipamentos.
+              </p>
+            </div>
+          </div>
+
+          <!-- Summary / Total -->
+          <div class="card-lift bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group stagger">
+            <div class="h-1.5 bg-gradient-to-r from-amber-500 to-amber-400"></div>
+            <div class="p-7 flex flex-col justify-between h-full">
+              <div>
+                <div class="font-mono text-[10px] text-amber-400 tracking-wider uppercase mb-3">Equipe dedicada</div>
+                <div class="font-display font-bold text-5xl text-white mb-1">04</div>
+                <div class="font-display font-medium text-lg text-amber-400">profissionais</div>
+              </div>
+              <div class="mt-6 pt-5 border-t border-slate-700">
+                <p class="text-xs text-slate-400 leading-relaxed">
+                  Equipe exclusiva e permanente, garantindo transição sem riscos operacionais e continuidade total dos
+                  serviços.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== METODOLOGIA / RCM ========== -->
+    <section id="metodologia" class="py-24 md:py-32 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="reveal">
+          <span class="font-mono text-xs text-amber-600 tracking-widest uppercase">04 · Metodologia</span>
+          <h2
+            class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-slate-900 mt-4 mb-16 leading-tight max-w-3xl"
+          >
+            Manutenção Baseada na<br /><span class="text-amber-600">Confiabilidade</span>
+          </h2>
+        </div>
 
         <div class="grid lg:grid-cols-2 gap-8">
           <!-- RCM description -->
-          <div class="bg-void-800 border border-white/5 rounded-2xl p-8 md:p-10">
-            <p class="text-slate-400 leading-relaxed mb-6">
-              Alem das rondas diarias e inspecoes visuais, a equipe realiza a
-              <span class="text-white">analise de tendencia de isolamento dos cabos serie</span>, permitindo a deteccao
-              de falhas antes da interrupcao do circuito.
+          <div class="bg-white border border-slate-200 rounded-2xl p-8 md:p-10 reveal">
+            <p class="text-slate-500 leading-relaxed mb-6">
+              A BDG implementa a
+              <span class="text-slate-900 font-medium"
+                >Manutenção Baseada na Confiabilidade (RCM, Reliability Centered Maintenance)</span
+              >, superando o modelo tradicional de manutenção reativa. O objetivo é antecipar falhas, reduzir paradas
+              não programadas e estender a vida útil dos ativos.
             </p>
-            <p class="text-slate-400 leading-relaxed">
-              Garantimos nao apenas a manutencao corretiva, mas uma
-              <span class="text-white">gestao de ativos baseada em dados e confiabilidade</span>, reduzindo custos
-              operacionais e maximizando a disponibilidade dos sistemas.
+            <p class="text-slate-500 leading-relaxed mb-6">
+              Além das rondas diárias e inspeções visuais, a equipe realiza a
+              <span class="text-slate-900 font-medium">análise de tendência de isolamento dos cabos de série</span>,
+              permitindo a detecção de degradação antes da interrupção do circuito.
+            </p>
+            <p class="text-slate-500 leading-relaxed">
+              A combinação de dados de campo com ferramentas de análise permite decisões de manutenção baseadas em
+              <span class="text-slate-900 font-medium">evidências</span>, e não apenas em calendários fixos, reduzindo
+              custos operacionais e maximizando a disponibilidade dos sistemas.
             </p>
           </div>
 
           <!-- 4 pillars grid -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="bg-void-800 border border-white/5 rounded-2xl p-6 relative overflow-hidden group">
+          <div class="grid grid-cols-2 gap-4 reveal">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden stagger">
               <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-500 to-transparent"></div>
-              <div class="font-display font-bold text-2xl text-white mb-1">Preventiva</div>
-              <div class="font-mono text-xs text-slate-600">Rondas diarias</div>
+              <div class="font-display font-bold text-2xl text-slate-900 mb-1">Preventiva</div>
+              <div class="font-mono text-xs text-slate-400 mb-3">Rondas diárias</div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Inspeção visual, limpeza de luminárias, verificação de lâmpadas e checagem de alinhamento.
+              </p>
             </div>
-            <div class="bg-void-800 border border-white/5 rounded-2xl p-6 relative overflow-hidden">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden stagger">
               <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-500 to-transparent"></div>
-              <div class="font-display font-bold text-2xl text-white mb-1">Preditiva</div>
-              <div class="font-mono text-xs text-slate-600">Analise de tendencia</div>
+              <div class="font-display font-bold text-2xl text-slate-900 mb-1">Preditiva</div>
+              <div class="font-mono text-xs text-slate-400 mb-3">Análise de tendência</div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Termografia, monitoramento de RCCs e análise de isolamento de cabos série.
+              </p>
             </div>
-            <div class="bg-void-800 border border-white/5 rounded-2xl p-6 relative overflow-hidden">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden stagger">
               <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-500 to-transparent"></div>
-              <div class="font-display font-bold text-2xl text-white mb-1">Corretiva</div>
-              <div class="font-mono text-xs text-slate-600">Resposta imediata</div>
+              <div class="font-display font-bold text-2xl text-slate-900 mb-1">Corretiva</div>
+              <div class="font-mono text-xs text-slate-400 mb-3">Resposta otimizada</div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Diagnóstico e reparo ágil com priorização da mínima interrupção operacional.
+              </p>
             </div>
-            <div class="bg-void-800 border border-white/5 rounded-2xl p-6 relative overflow-hidden">
+            <div class="bg-white border border-slate-200 rounded-2xl p-6 relative overflow-hidden stagger">
               <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-500 to-transparent"></div>
-              <div class="font-display font-bold text-2xl text-white mb-1">Laudos</div>
-              <div class="font-mono text-xs text-slate-600">Relatorios tecnicos</div>
+              <div class="font-display font-bold text-2xl text-slate-900 mb-1">Laudos</div>
+              <div class="font-mono text-xs text-slate-400 mb-3">Relatórios técnicos</div>
+              <p class="text-xs text-slate-500 leading-relaxed">
+                Relatórios mensais de confiabilidade, históricos de intervenção e recomendações.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Divider -->
-    <div class="tech-line"></div>
-
-    <!-- Equipamentos -->
-    <section id="equipamentos" class="py-24 md:py-32 relative grid-bg">
+    <!-- ========== EQUIPAMENTOS ========== -->
+    <section id="equipamentos" class="py-24 md:py-32 bg-white">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <span class="font-mono text-xs text-amber-500 tracking-widest uppercase">04 &mdash; Ferramental</span>
-        <h2 class="font-display font-bold text-3xl md:text-4xl text-white mt-4 mb-5 leading-tight">
-          Equipamentos de precisao calibrados
-        </h2>
-        <p class="text-slate-400 leading-relaxed mb-12 max-w-xl">
-          Instrumentacao de ultima geracao para garantir a precisao dos laudos e a confiabilidade dos servicos.
-        </p>
+        <div class="reveal">
+          <span class="font-mono text-xs text-amber-600 tracking-widest uppercase">05 · Ferramental</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-slate-900 mt-4 mb-5 leading-tight">
+            Equipamentos de precisão calibrados
+          </h2>
+          <p class="text-slate-500 leading-relaxed mb-12 max-w-xl">
+            Instrumentação de última geração com certificados de calibração vigentes para garantir a precisão dos laudos
+            e a confiabilidade dos serviços.
+          </p>
+        </div>
 
-        <div class="space-y-3">
-          <!-- Equipment row style -->
+        <div class="space-y-3 reveal">
+          <!-- Terrômetro -->
           <div
-            class="flex items-center gap-6 bg-void-800/60 border border-white/5 rounded-xl px-6 py-5 hover:border-amber-500/20 transition-colors group"
+            class="flex items-center gap-6 bg-slate-50 border border-slate-200 rounded-xl px-6 py-5 hover:border-amber-300 transition-colors group stagger"
           >
             <div
-              class="flex-shrink-0 w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center"
+              class="flex-shrink-0 w-10 h-10 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-center"
             >
-              <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -741,22 +823,23 @@
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <span class="font-display font-semibold text-white text-sm">Terrometro Digital MTD-20KI</span>
-                <span class="font-mono text-[11px] text-slate-600">Aterramento</span>
+                <span class="font-display font-semibold text-slate-900 text-sm">Terrômetro Digital MTD-20KI</span>
+                <span class="font-mono text-[11px] text-slate-400">Aterramento</span>
               </div>
               <div class="text-xs text-slate-500 mt-1">
-                Medicoes de resistencia de aterramento da malha de balizamento
+                Medições de resistência de aterramento da malha de balizamento, conforme NBR 5419.
               </div>
             </div>
           </div>
 
+          <!-- Miliôhmímetro -->
           <div
-            class="flex items-center gap-6 bg-void-800/60 border border-white/5 rounded-xl px-6 py-5 hover:border-amber-500/20 transition-colors group"
+            class="flex items-center gap-6 bg-slate-50 border border-slate-200 rounded-xl px-6 py-5 hover:border-amber-300 transition-colors group stagger"
           >
             <div
-              class="flex-shrink-0 w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center"
+              class="flex-shrink-0 w-10 h-10 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-center"
             >
-              <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -767,22 +850,24 @@
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <span class="font-display font-semibold text-white text-sm">Miliohmimetro Digital MILLIOHM-1</span>
-                <span class="font-mono text-[11px] text-slate-600">Continuidade</span>
+                <span class="font-display font-semibold text-slate-900 text-sm">Miliôhmímetro Digital MILLIOHM-1</span>
+                <span class="font-mono text-[11px] text-slate-400">Continuidade</span>
               </div>
               <div class="text-xs text-slate-500 mt-1">
-                Testes de continuidade eletrica em estruturas de PAPI e sinalizacao vertical
+                Testes de continuidade elétrica em estruturas de PAPI e sinalização vertical, assegurando integridade
+                das conexões.
               </div>
             </div>
           </div>
 
+          <!-- FLIR -->
           <div
-            class="flex items-center gap-6 bg-void-800/60 border border-white/5 rounded-xl px-6 py-5 hover:border-amber-500/20 transition-colors group"
+            class="flex items-center gap-6 bg-slate-50 border border-slate-200 rounded-xl px-6 py-5 hover:border-amber-300 transition-colors group stagger"
           >
             <div
-              class="flex-shrink-0 w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center"
+              class="flex-shrink-0 w-10 h-10 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-center"
             >
-              <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -799,22 +884,25 @@
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <span class="font-display font-semibold text-white text-sm">Camera Termica FLIR C5</span>
-                <span class="font-mono text-[11px] text-slate-600">160 x 120px</span>
+                <span class="font-display font-semibold text-slate-900 text-sm">Câmera Térmica FLIR C5</span>
+                <span class="font-mono text-[11px] text-slate-400"
+                  >160&times;120px &middot; &minus;20 a +400&nbsp;&deg;C</span
+                >
               </div>
               <div class="text-xs text-slate-500 mt-1">
-                Identificacao de pontos quentes em conexoes de transformadores isoladores e bornes de RCCs
+                Identificação de pontos quentes em conexões de transformadores isoladores e bornes de RCCs.
               </div>
             </div>
           </div>
 
+          <!-- Alicate -->
           <div
-            class="flex items-center gap-6 bg-void-800/60 border border-white/5 rounded-xl px-6 py-5 hover:border-amber-500/20 transition-colors group"
+            class="flex items-center gap-6 bg-slate-50 border border-slate-200 rounded-xl px-6 py-5 hover:border-amber-300 transition-colors group stagger"
           >
             <div
-              class="flex-shrink-0 w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center"
+              class="flex-shrink-0 w-10 h-10 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-center"
             >
-              <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -825,20 +913,25 @@
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <span class="font-display font-semibold text-white text-sm">Alicate Terrometro Digital ET-4310</span>
-                <span class="font-mono text-[11px] text-slate-600">Laco de terra</span>
+                <span class="font-display font-semibold text-slate-900 text-sm"
+                  >Alicate Terrômetro Digital ET-4310</span
+                >
+                <span class="font-mono text-[11px] text-slate-400">Laço de terra</span>
               </div>
-              <div class="text-xs text-slate-500 mt-1">Medicao de laco de terra sem desconexao do sistema</div>
+              <div class="text-xs text-slate-500 mt-1">
+                Medição de laço de terra sem desconexão do sistema, permitindo verificação com o circuito em operação.
+              </div>
             </div>
           </div>
 
+          <!-- Analisador -->
           <div
-            class="flex items-center gap-6 bg-void-800/60 border border-white/5 rounded-xl px-6 py-5 hover:border-amber-500/20 transition-colors group"
+            class="flex items-center gap-6 bg-slate-50 border border-slate-200 rounded-xl px-6 py-5 hover:border-amber-300 transition-colors group stagger"
           >
             <div
-              class="flex-shrink-0 w-10 h-10 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center"
+              class="flex-shrink-0 w-10 h-10 bg-amber-50 border border-amber-200 rounded-lg flex items-center justify-center"
             >
-              <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -849,11 +942,14 @@
             </div>
             <div class="flex-1 min-w-0">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <span class="font-display font-semibold text-white text-sm">Analisador de Energia PowerNET P-600</span>
-                <span class="font-mono text-[11px] text-slate-600">Qualidade</span>
+                <span class="font-display font-semibold text-slate-900 text-sm"
+                  >Analisador de Energia PowerNET P-600</span
+                >
+                <span class="font-mono text-[11px] text-slate-400">Qualidade de energia</span>
               </div>
               <div class="text-xs text-slate-500 mt-1">
-                Monitoramento da estabilidade de saida dos Reguladores de Corrente Constante
+                Monitoramento da estabilidade de saída dos Reguladores de Corrente Constante com registro de forma de
+                onda.
               </div>
             </div>
           </div>
@@ -861,32 +957,27 @@
       </div>
     </section>
 
-    <!-- Divider -->
-    <div class="tech-line"></div>
-
-    <!-- Contato -->
-    <section id="contato" class="py-24 md:py-32 relative">
-      <div class="absolute inset-0">
-        <div
-          class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[128px]"
-        ></div>
-      </div>
-      <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
-        <div class="max-w-3xl mx-auto text-center">
-          <span class="font-mono text-xs text-amber-500 tracking-widest uppercase">05 &mdash; Contato</span>
-          <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-white mt-4 mb-5 leading-tight">
+    <!-- ========== CONTATO ========== -->
+    <section id="contato" class="py-24 md:py-32 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center reveal">
+          <span class="font-mono text-xs text-amber-600 tracking-widest uppercase">06 · Contato</span>
+          <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-slate-900 mt-4 mb-5 leading-tight">
             Fale conosco
           </h2>
-          <p class="text-slate-400 leading-relaxed mb-14 max-w-lg mx-auto">
-            Entre em contato para solicitar uma proposta tecnica ou esclarecer duvidas sobre nossos servicos.
+          <p class="text-slate-500 leading-relaxed mb-14 max-w-lg mx-auto">
+            Entre em contato para solicitar uma proposta técnica, esclarecer dúvidas sobre nossos serviços ou dar
+            continuidade a uma negociação em andamento.
           </p>
 
           <div class="grid sm:grid-cols-3 gap-4 mb-14">
-            <div class="bg-void-800 border border-white/5 rounded-2xl p-6 hover:border-amber-500/20 transition-colors">
+            <div
+              class="bg-white border border-slate-200 rounded-2xl p-6 hover:border-amber-300 transition-colors stagger"
+            >
               <div
-                class="w-11 h-11 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mx-auto mb-4"
+                class="w-11 h-11 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center mx-auto mb-4"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -895,19 +986,21 @@
                   />
                 </svg>
               </div>
-              <div class="font-display font-semibold text-white text-sm mb-1">Email</div>
+              <div class="font-display font-semibold text-slate-900 text-sm mb-1">Email</div>
               <a
                 href="mailto:contato@bdgmanutencao.com.br"
-                class="text-xs text-amber-500 hover:text-amber-400 transition-colors break-all"
+                class="text-xs text-amber-600 hover:text-amber-700 transition-colors break-all"
                 >contato@bdgmanutencao.com.br</a
               >
             </div>
 
-            <div class="bg-void-800 border border-white/5 rounded-2xl p-6 hover:border-amber-500/20 transition-colors">
+            <div
+              class="bg-white border border-slate-200 rounded-2xl p-6 hover:border-amber-300 transition-colors stagger"
+            >
               <div
-                class="w-11 h-11 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mx-auto mb-4"
+                class="w-11 h-11 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center mx-auto mb-4"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -922,18 +1015,20 @@
                   />
                 </svg>
               </div>
-              <div class="font-display font-semibold text-white text-sm mb-1">Endereco</div>
+              <div class="font-display font-semibold text-slate-900 text-sm mb-1">Endereço</div>
               <div class="text-xs text-slate-500 leading-relaxed">
-                R. Noel de Oliveira Campos, 154<br />Sao Jose dos Campos &mdash; SP<br />
-                <span class="font-mono text-[10px] text-slate-600">CEP 12.227-791</span>
+                R. Noel de Oliveira Campos, 154<br />São José dos Campos, SP<br />
+                <span class="font-mono text-[10px] text-slate-400">CEP 12.227-791</span>
               </div>
             </div>
 
-            <div class="bg-void-800 border border-white/5 rounded-2xl p-6 hover:border-amber-500/20 transition-colors">
+            <div
+              class="bg-white border border-slate-200 rounded-2xl p-6 hover:border-amber-300 transition-colors stagger"
+            >
               <div
-                class="w-11 h-11 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center mx-auto mb-4"
+                class="w-11 h-11 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center mx-auto mb-4"
               >
-                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
@@ -942,14 +1037,14 @@
                   />
                 </svg>
               </div>
-              <div class="font-display font-semibold text-white text-sm mb-1">CNPJ</div>
+              <div class="font-display font-semibold text-slate-900 text-sm mb-1">CNPJ</div>
               <div class="font-mono text-xs text-slate-500">50.748.646/0001-20</div>
             </div>
           </div>
 
           <a
             href="mailto:contato@bdgmanutencao.com.br"
-            class="group inline-flex items-center justify-center gap-3 bg-amber-500 text-void-950 font-display font-semibold px-10 py-4 rounded-xl hover:bg-amber-400 transition-all hover:shadow-xl hover:shadow-amber-500/20"
+            class="group inline-flex items-center justify-center gap-3 bg-slate-900 text-white font-display font-semibold px-10 py-4 rounded-xl hover:bg-slate-800 transition-colors"
           >
             Enviar email
             <svg
@@ -965,19 +1060,48 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/5 py-10">
+    <!-- ========== FOOTER ========== -->
+    <footer class="border-t border-slate-200 py-10 bg-white">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="flex flex-col md:flex-row items-center justify-between gap-6">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 bg-amber-500/10 border border-amber-500/20 rounded-lg flex items-center justify-center">
-              <span class="text-amber-500 font-display font-bold text-[10px]">BDG</span>
-            </div>
-            <span class="font-display font-medium text-sm text-slate-500">BDG Tecnologia e Manutencao LTDA</span>
+            <img src="logo.png" alt="BDG Tecnologia e Manutenção" class="h-6 opacity-60" />
           </div>
-          <div class="font-mono text-[11px] text-slate-600">&copy; 2026 &mdash; Todos os direitos reservados</div>
+          <div class="flex items-center gap-6 text-slate-400">
+            <a
+              href="mailto:contato@bdgmanutencao.com.br"
+              class="font-mono text-[11px] hover:text-amber-600 transition-colors"
+              >contato@bdgmanutencao.com.br</a
+            >
+            <span class="hidden sm:inline font-mono text-[11px]">&middot;</span>
+            <a
+              href="https://www.bdgmanutencao.com.br"
+              class="hidden sm:inline font-mono text-[11px] hover:text-amber-600 transition-colors"
+              >bdgmanutencao.com.br</a
+            >
+          </div>
+          <div class="font-mono text-[11px] text-slate-400">&copy; 2026 · Todos os direitos reservados</div>
         </div>
       </div>
     </footer>
+
+    <!-- ========== SCROLL REVEAL (IntersectionObserver) ========== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+        );
+
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      });
+    </script>
   </body>
 </html>
